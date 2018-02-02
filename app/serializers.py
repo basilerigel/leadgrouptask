@@ -15,10 +15,9 @@ class PostSerializer(serializers.ModelSerializer):
     drink_name = serializers.ReadOnlyField(source='drink.name')
     user_id = serializers.ReadOnlyField(source='user.id')
 
-    # user=serializers.ReadOnlyField(source='user.username')
     class Meta:
         model = Post
-        fields = ('id','user_id', 'pair', 'drink_name')
+        fields = ('id', 'user_id', 'pair', 'drink_name')
 
 
 class DrinkSerializer(serializers.ModelSerializer):
@@ -28,8 +27,8 @@ class DrinkSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    #post = serializers.PrimaryKeyRelatedField(many=True, queryset=Post.objects.all())
     post_id = serializers.ReadOnlyField(source='post.id')
+
     class Meta:
         model = User
         fields = ('id', 'username', 'post_id')
